@@ -1,11 +1,35 @@
 #ifndef MODELVIEW_HPP
 #define MODELVIEW_HPP
 
+#include <memory>
 
-class ModelView
+#include <src/device/model/Model.hpp>
+#include <src/device/modelView/signal/UseCaseSignal.hpp>
+#include <src/device/viewCommunication/signal/UseCaseSignal.hpp>
+
+#include <src/utils/SignalPublisher.hpp>
+#include <src/utils/SignalSubscriber.hpp>
+
+namespace device
+{
+namespace modelView
+{
+
+class ModelView :
+    public utils::SignalPublisher<device::modelView::signal::UseCaseSignal>,
+    public utils::SignalSubscriber<device::viewCommunication::signal::UseCaseSignal>
 {
   public:
-    ModelView();
+    ModelView(std::shared_ptr<device::model::Model> model);
+
+    void dispatchAction(int data);
+    void recievedSignal(device::viewCommunication::signal::UseCaseSignal signal) override;
+
+  private:
+    std::shared_ptr<device::model::Model> mModel;
 };
+
+} // namespace modelView
+} // namespace device
 
 #endif // MODELVIEW_HPP
