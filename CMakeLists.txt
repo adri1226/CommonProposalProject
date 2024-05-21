@@ -14,9 +14,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 
+FILE(GLOB_RECURSE APP_SOURCES
+  ${PROJECT_SOURCE_DIR}/src/*.hpp
+  ${PROJECT_SOURCE_DIR}/src/*.cpp
+  ${PROJECT_SOURCE_DIR}/src/*.qml)
+
 set(PROJECT_SOURCES
-        main.cpp
-        qml.qrc
+        ${APP_SOURCES}
+        ${PROJECT_SOURCE_DIR}/src/qml.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
