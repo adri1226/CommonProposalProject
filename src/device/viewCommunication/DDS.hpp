@@ -1,5 +1,5 @@
-#ifndef DDS_HPP
-#define DDS_HPP
+#ifndef DEVICE_VIEWCOMMUNICATION_DDS_HPP
+#define DEVICE_VIEWCOMMUNICATION_DDS_HPP
 
 #include <atomic>
 #include <thread>
@@ -44,4 +44,4 @@ class DDS :
 } // namespace viewCommunication
 } // namespace device
 
-#endif // DDS_HPP
+#endif // DEVICE_VIEWCOMMUNICATION_DDS_HPP
