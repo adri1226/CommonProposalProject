@@ -15,7 +15,11 @@ Window {
     {
         SendMessage
         {
-            visible:true
+            visible: true
+        }
+        DrawData
+        {
+            visible: true
         }
     }
 }

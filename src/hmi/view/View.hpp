@@ -26,15 +26,19 @@ class View :
     Q_OBJECT
 
   public:
-    View(std::shared_ptr<device::presenter::Presenter> presenter);
+    View(std::shared_ptr<device::presenter::Presenter> presenter, QQmlApplicationEngine& engine,
+         QObject* parent = nullptr);
+
+    void recievedSignal(device::presenter::signal::UseCaseSignal signal);
 
   public slots:
     void pressed();
+    void updateData(const QVariant& data);
 
   private:
-    void recievedSignal(device::presenter::signal::UseCaseSignal signal);
-
     std::shared_ptr<device::presenter::Presenter> mPresenter;
+    QQmlApplicationEngine& mEngine;
+    QObject* mParent;
 
 };
 

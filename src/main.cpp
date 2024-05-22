@@ -18,7 +18,7 @@ std::shared_ptr<device::presenter::Presenter> mPresenter;
 std::shared_ptr<hmi::view::View> mView;
 std::shared_ptr<device::viewCommunication::DDS> mDDS;
 
-void initUseCase()
+void initUseCase(QQmlApplicationEngine& engine)
 {
   mModel = std::make_shared<device::model::Model>();
 
@@ -28,7 +28,7 @@ void initUseCase()
 
   mPresenter = std::make_shared<device::presenter::Presenter>(mModel, mController);
 
-  mView = std::make_shared<hmi::view::View>(mPresenter);
+  mView = std::make_shared<hmi::view::View>(mPresenter, engine);
   mDDS = std::make_shared<device::viewCommunication::DDS>(0, 2);
 }
 
@@ -50,12 +50,11 @@ int main(int argc, char *argv[])
 #endif
 
   QGuiApplication app(argc, argv);
+  QQmlApplicationEngine engine;
 
-  initUseCase();
+  initUseCase(engine);
 
   initObserverRelations();
-
-  QQmlApplicationEngine engine;
 
   engine.rootContext()->setContextProperty("view", mView.get());
 
