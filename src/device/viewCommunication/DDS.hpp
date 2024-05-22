@@ -31,7 +31,7 @@ class DDS :
     void recievedSignal(device::modelView::signal::UseCaseSignal signal) override;
 
   private:
-    void sendSignal(int data);
+    void dispatchUpdated(int data);
     void readingTopicRecieveData();
     void dispatchTopicRecieveData(RecieveData recieveData);
     void writeTopicSendAction(bool data);

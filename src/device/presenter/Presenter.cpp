@@ -16,18 +16,18 @@ Presenter::Presenter(std::shared_ptr<const model::Model> model,
 void Presenter::recievedSignal(model::signal::UseCaseSignal signal)
 {
   int data = signal.getData();
-  dispatch(data);
+  dispatchUpdated(data);
 }
 
-void Presenter::action(bool data)
+void Presenter::pressed(bool data)
 {
-  mController->doAction(data);
+  mController->action(data);
 }
 
-void Presenter::dispatch(int data)
+void Presenter::dispatchUpdated(int data)
 {
   signal::UseCaseSignal signal(data);
-  notifySubscribers(signal);
+  dispatch(data);
 }
 
 

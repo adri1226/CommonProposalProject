@@ -18,7 +18,7 @@ void View::pressed()
 {
   bool isPressed = true;
 
-  mPresenter->action(isPressed);
+  mPresenter->pressed(isPressed);
 }
 
 void View::recievedSignal(device::presenter::signal::UseCaseSignal signal)

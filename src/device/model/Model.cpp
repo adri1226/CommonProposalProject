@@ -18,13 +18,13 @@ int Model::getData() const
 void Model::setData(int newValue)
 {
   mData = newValue;
-  sendSignal();
+  dispatchUpdated();
 }
 
-void Model::sendSignal()
+void Model::dispatchUpdated()
 {
   signal::UseCaseSignal signal(mData);
-  notifySubscribers(signal);
+  dispatch(signal);
 }
 
 } // namespace model

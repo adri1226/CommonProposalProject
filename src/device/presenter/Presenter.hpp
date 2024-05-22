@@ -24,10 +24,10 @@ class Presenter :
               std::shared_ptr<device::controller::Controller> controller);
 
     void recievedSignal(device::model::signal::UseCaseSignal signal) override;
-    void action(bool data);
+    void pressed(bool data);
 
   private:
-    void dispatch(int data);
+    void dispatchUpdated(int data);
 
     std::shared_ptr<const device::model::Model> mModel;
     std::shared_ptr<device::controller::Controller> mController;

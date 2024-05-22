@@ -25,10 +25,10 @@ void DDS::recievedSignal(modelView::signal::UseCaseSignal signal)
   writeTopicSendAction(signal.getData());
 }
 
-void device::viewCommunication::DDS::sendSignal(int data)
+void device::viewCommunication::DDS::dispatchUpdated(int data)
 {
   signal::UseCaseSignal signal(data);
-  notifySubscribers(signal);
+  dispatch(signal);
 }
 
 void DDS::readingTopicRecieveData()
@@ -42,7 +42,7 @@ void DDS::readingTopicRecieveData()
 void DDS::dispatchTopicRecieveData(RecieveData recieveData)
 {
   std::cout << "RecieveData topic recieved: " << recieveData << std::endl;
-  sendSignal(recieveData.data());
+  dispatchUpdated(recieveData.data());
 }
 
 void DDS::writeTopicSendAction(bool data)

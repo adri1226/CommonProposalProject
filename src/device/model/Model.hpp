@@ -18,7 +18,7 @@ class Model : public utils::SignalPublisher<device::model::signal::UseCaseSignal
     void setData(int newValue);
 
   private:
-    void sendSignal();
+    void dispatchUpdated();
 
     int mData;
 };

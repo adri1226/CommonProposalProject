@@ -12,10 +12,10 @@ Controller::Controller(std::shared_ptr<const model::Model> model, std::shared_pt
 
 }
 
-void Controller::doAction(bool data)
+void Controller::action(bool data)
 {
   mModel->getData();
-  mModelView->dispatchAction(data);
+  mModelView->action(data);
 }
 
 } // namespace controller

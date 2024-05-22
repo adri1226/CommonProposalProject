@@ -27,7 +27,7 @@ class SignalPublisher
           std::remove(mSubscribers.begin(), mSubscribers.end(), *subscriber), mSubscribers.end());
     }
 
-    void notifySubscribers(TSignal signal)
+    void dispatch(TSignal signal)
     {
       for (auto subscriber : mSubscribers)
       {

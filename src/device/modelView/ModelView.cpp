@@ -11,16 +11,21 @@ ModelView::ModelView(std::shared_ptr<device::model::Model> model)
 
 }
 
-void ModelView::dispatchAction(bool data)
+void ModelView::action(bool data)
 {
-  signal::UseCaseSignal signal(data);
-  notifySubscribers(signal);
+  dispatchAction(data);
 }
 
 void ModelView::recievedSignal(device::viewCommunication::signal::UseCaseSignal signal)
 {
   int data = signal.getData();
   mModel->setData(data);
+}
+
+void ModelView::dispatchAction(bool data)
+{
+  signal::UseCaseSignal signal(data);
+  dispatch(signal);
 }
 
 } // namespace modelView
