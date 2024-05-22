@@ -3,12 +3,12 @@
 
 #include <memory>
 
-#include <src/device/model/Model.hpp>
-#include <src/device/modelView/signal/UseCaseSignal.hpp>
-#include <src/device/viewCommunication/signal/UseCaseSignal.hpp>
+#include <device/model/Model.hpp>
+#include <device/modelView/signal/UseCaseSignal.hpp>
+#include <device/viewCommunication/signal/UseCaseSignal.hpp>
 
-#include <src/utils/SignalPublisher.hpp>
-#include <src/utils/SignalSubscriber.hpp>
+#include <utils/SignalPublisher.hpp>
+#include <utils/SignalSubscriber.hpp>
 
 namespace device
 {

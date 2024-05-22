@@ -4,15 +4,15 @@
 #include <atomic>
 #include <thread>
 
-#include <src/idl/CommonProposalProject.hpp>
-#include <src/device/viewCommunication/signal/UseCaseSignal.hpp>
-#include <src/device/modelView/signal/UseCaseSignal.hpp>
+#include <idl/CommonProposalProject.hpp>
+#include <device/viewCommunication/signal/UseCaseSignal.hpp>
+#include <device/modelView/signal/UseCaseSignal.hpp>
 
-#include <src/utils/DDSDataReader.hpp>
-#include <src/utils/DDSDataWriter.hpp>
-#include <src/utils/DDSView.hpp>
-#include <src/utils/SignalPublisher.hpp>
-#include <src/utils/SignalSubscriber.hpp>
+#include <utils/DDSDataReader.hpp>
+#include <utils/DDSDataWriter.hpp>
+#include <utils/DDSView.hpp>
+#include <utils/SignalPublisher.hpp>
+#include <utils/SignalSubscriber.hpp>
 
 namespace device
 {

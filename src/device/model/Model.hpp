@@ -1,8 +1,8 @@
 #ifndef DEVICE_MODEL_MODEL_HPP
 #define DEVICE_MODEL_MODEL_HPP
 
-#include <src/device/model/signal/UseCaseSignal.hpp>
-#include <src/utils/SignalPublisher.hpp>
+#include <device/model/signal/UseCaseSignal.hpp>
+#include <utils/SignalPublisher.hpp>
 
 namespace device
 {

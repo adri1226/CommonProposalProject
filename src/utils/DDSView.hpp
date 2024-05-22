@@ -8,8 +8,8 @@
 #include <rti/config/Logger.hpp>
 #include <rti/util/util.hpp>
 
-#include <src/utils/DDSDataReader.hpp>
-#include <src/utils/DDSDataWriter.hpp>
+#include <utils/DDSDataReader.hpp>
+#include <utils/DDSDataWriter.hpp>
 
 namespace utils
 {

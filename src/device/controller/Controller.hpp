@@ -3,8 +3,8 @@
 
 #include <memory>
 
-#include <src/device/model/Model.hpp>
-#include <src/device/modelView/ModelView.hpp>
+#include <device/model/Model.hpp>
+#include <device/modelView/ModelView.hpp>
 
 namespace device
 {
