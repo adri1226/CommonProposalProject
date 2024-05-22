@@ -14,11 +14,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 
+list(APPEND CMAKE_MODULE_PATH $ENV{NDDSHOME}/resource/cmake)
+find_package(RTIConnextDDS "6.1.0" REQUIRED COMPONENTS core routing_service)
+
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
 FILE(GLOB_RECURSE APP_SOURCES
   ${PROJECT_SOURCE_DIR}/src/*.hpp
   ${PROJECT_SOURCE_DIR}/src/*.cpp
+  ${PROJECT_SOURCE_DIR}/src/*.cxx
   ${PROJECT_SOURCE_DIR}/src/*.qml)
 
 set(PROJECT_SOURCES
@@ -52,7 +56,8 @@ endif()
 target_compile_definitions(CommonProposalProject
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(CommonProposalProject
-  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick
+  PUBLIC RTIConnextDDS::cpp2_api)
 
 set_target_properties(CommonProposalProject PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
