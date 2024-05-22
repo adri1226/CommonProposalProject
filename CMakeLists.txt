@@ -19,6 +19,7 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 FILE(GLOB_RECURSE APP_SOURCES
   ${PROJECT_SOURCE_DIR}/src/*.hpp
   ${PROJECT_SOURCE_DIR}/src/*.cpp
+  ${PROJECT_SOURCE_DIR}/src/*.cxx
   ${PROJECT_SOURCE_DIR}/src/*.qml)
 
 set(PROJECT_SOURCES
