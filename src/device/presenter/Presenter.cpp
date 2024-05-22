@@ -21,6 +21,7 @@ void Presenter::recievedSignal(model::signal::UseCaseSignal signal)
 
 void Presenter::action(bool data)
 {
+  mController->doAction(data);
 }
 
 void Presenter::dispatch(int data)

@@ -11,7 +11,7 @@ ModelView::ModelView(std::shared_ptr<device::model::Model> model)
 
 }
 
-void ModelView::dispatchAction(int data)
+void ModelView::dispatchAction(bool data)
 {
   signal::UseCaseSignal signal(data);
   notifySubscribers(signal);

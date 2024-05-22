@@ -15,9 +15,9 @@ int Model::getData() const
   return mData;
 }
 
-void Model::setData(int newEntero)
+void Model::setData(int newValue)
 {
-  mData = newEntero;
+  mData = newValue;
   sendSignal();
 }
 

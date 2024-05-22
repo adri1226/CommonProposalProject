@@ -17,7 +17,7 @@ class Controller
     Controller(std::shared_ptr<const device::model::Model> model,
                std::shared_ptr<device::modelView::ModelView> modelView);
 
-    void doAction(int data);
+    void doAction(bool data);
 
   private:
     std::shared_ptr<const device::model::Model> mModel;

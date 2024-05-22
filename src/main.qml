@@ -11,15 +11,9 @@ Window {
 
     ColumnLayout
     {
-        Button
+        SendMessage
         {
-            id: senderButton
-            text: "Send Message"
-
-            onClicked:
-            {
-                view.pressed();
-            }
+            visible:true
         }
     }
 }

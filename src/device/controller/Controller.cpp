@@ -12,7 +12,7 @@ Controller::Controller(std::shared_ptr<const model::Model> model, std::shared_pt
 
 }
 
-void Controller::doAction(int data)
+void Controller::doAction(bool data)
 {
   mModel->getData();
   mModelView->dispatchAction(data);

@@ -15,7 +15,7 @@ class Model : public utils::SignalPublisher<device::model::signal::UseCaseSignal
     Model();
 
     int getData() const;
-    void setData(int newEntero);
+    void setData(int newValue);
 
   private:
     void sendSignal();

@@ -11,12 +11,12 @@ namespace signal
 class UseCaseSignal
 {
   public:
-    UseCaseSignal(int data);
+    UseCaseSignal(bool data);
 
-    int getData() const;
+    bool getData() const;
 
   private:
-    int mData;
+    bool mData;
 };
 
 } // namespace signal

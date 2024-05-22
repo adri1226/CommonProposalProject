@@ -7,12 +7,12 @@ namespace modelView
 namespace signal
 {
 
-UseCaseSignal::UseCaseSignal(int data): mData(data)
+UseCaseSignal::UseCaseSignal(bool data): mData(data)
 {
 
 }
 
-int UseCaseSignal::getData() const
+bool UseCaseSignal::getData() const
 {
   return mData;
 }

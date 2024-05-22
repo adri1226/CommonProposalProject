@@ -22,7 +22,7 @@ class ModelView :
   public:
     ModelView(std::shared_ptr<device::model::Model> model);
 
-    void dispatchAction(int data);
+    void dispatchAction(bool data);
     void recievedSignal(device::viewCommunication::signal::UseCaseSignal signal) override;
 
   private:
