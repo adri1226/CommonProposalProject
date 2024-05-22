@@ -10,6 +10,9 @@
 #include <QQuickWindow>
 
 #include <device/presenter/Presenter.hpp>
+#include <device/presenter/signal/UseCaseSignal.hpp>
+
+#include <utils/SignalSubscriber.hpp>
 
 namespace hmi
 {
@@ -17,7 +20,8 @@ namespace view
 {
 
 class View :
-    public QObject
+    public QObject,
+    public utils::SignalSubscriber<device::presenter::signal::UseCaseSignal>
 {
     Q_OBJECT
 
@@ -28,6 +32,8 @@ class View :
     void pressed();
 
   private:
+    void recievedSignal(device::presenter::signal::UseCaseSignal signal);
+
     std::shared_ptr<device::presenter::Presenter> mPresenter;
 
 };

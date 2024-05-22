@@ -18,5 +18,10 @@ void View::pressed()
   mPresenter->action(isPressed);
 }
 
+void View::recievedSignal(device::presenter::signal::UseCaseSignal signal)
+{
+
+}
+
 }  // namespace view
 }  // namespace hmi
