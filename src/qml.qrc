@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>SendMessage.qml</file>
+        <file>hmi/qml/SendMessage.qml</file>
     </qresource>
 </RCC>

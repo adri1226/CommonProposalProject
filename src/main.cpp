@@ -8,7 +8,7 @@
 #include <device/modelView/ModelView.hpp>
 #include <device/controller/Controller.hpp>
 #include <device/presenter/Presenter.hpp>
-#include <hmi/View.hpp>
+#include <hmi/view/View.hpp>
 
 int main(int argc, char *argv[])
 {
@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
   std::shared_ptr<device::presenter::Presenter> presenter =
       std::make_shared<device::presenter::Presenter>(model, controller);
 
-  std::shared_ptr<hmi::View> view = std::make_shared<hmi::View>(presenter);
+  std::shared_ptr<hmi::view::View> view = std::make_shared<hmi::view::View>(presenter);
 
   QQmlApplicationEngine engine;
 

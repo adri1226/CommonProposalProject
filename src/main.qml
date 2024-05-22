@@ -3,6 +3,8 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.12
 
+import "hmi/qml"
+
 Window {
     width: 640
     height: 480

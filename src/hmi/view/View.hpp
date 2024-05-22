@@ -13,6 +13,8 @@
 
 namespace hmi
 {
+namespace view
+{
 
 class View :
     public QObject
@@ -30,6 +32,7 @@ class View :
 
 };
 
+}  // namespace view
 }  // namespace hmi
 
 #endif // HMI_HPP
