@@ -1,5 +1,5 @@
-#ifndef MODELVIEW_HPP
-#define MODELVIEW_HPP
+#ifndef DEVICE_MODELVIEW_MODELVIEW_HPP
+#define DEVICE_MODELVIEW_MODELVIEW_HPP
 
 #include <memory>
 
@@ -34,4 +34,4 @@ class ModelView :
 } // namespace modelView
 } // namespace device
 
-#endif // MODELVIEW_HPP
+#endif // DEVICE_MODELVIEW_MODELVIEW_HPP

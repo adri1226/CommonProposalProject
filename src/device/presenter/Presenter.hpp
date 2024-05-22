@@ -1,5 +1,5 @@
-#ifndef PRESENTER_HPP
-#define PRESENTER_HPP
+#ifndef DEVICE_PRESENTER_PRESENTER_HPP
+#define DEVICE_PRESENTER_PRESENTER_HPP
 
 #include <memory>
 
@@ -36,4 +36,4 @@ class Presenter :
 } // namespace presenter
 } // namespace device
 
-#endif // PRESENTER_HPP
+#endif // DEVICE_PRESENTER_PRESENTER_HPP

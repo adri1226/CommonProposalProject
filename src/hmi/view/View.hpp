@@ -1,5 +1,5 @@
-#ifndef HMI_HPP
-#define HMI_HPP
+#ifndef HMI_VIEW_VIEW_HPP
+#define HMI_VIEW_VIEW_HPP
 
 #include <iostream>
 
@@ -45,4 +45,4 @@ class View :
 }  // namespace view
 }  // namespace hmi
 
-#endif // HMI_HPP
+#endif // HMI_VIEW_VIEW_HPP
