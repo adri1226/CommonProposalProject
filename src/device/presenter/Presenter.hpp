@@ -24,7 +24,7 @@ class Presenter :
               std::shared_ptr<device::controller::Controller> controller);
 
     void recievedSignal(device::model::signal::UseCaseSignal signal) override;
-    void action(int data);
+    void action(bool data);
 
   private:
     void dispatch(int data);

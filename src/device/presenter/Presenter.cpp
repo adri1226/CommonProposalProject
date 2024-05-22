@@ -19,6 +19,10 @@ void Presenter::recievedSignal(model::signal::UseCaseSignal signal)
   dispatch(data);
 }
 
+void Presenter::action(bool data)
+{
+}
+
 void Presenter::dispatch(int data)
 {
   signal::UseCaseSignal signal(data);
