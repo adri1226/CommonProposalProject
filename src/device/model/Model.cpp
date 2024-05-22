@@ -10,7 +10,7 @@ Model::Model()
 
 }
 
-int Model::getData() const
+int Model::consult() const
 {
   return mData;
 }

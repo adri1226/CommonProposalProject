@@ -14,7 +14,7 @@ class Model : public utils::SignalPublisher<device::model::signal::UseCaseSignal
   public:
     Model();
 
-    int getData() const;
+    int consult() const;
     void setData(int newValue);
 
   private:

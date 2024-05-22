@@ -14,7 +14,7 @@ Controller::Controller(std::shared_ptr<const model::Model> model, std::shared_pt
 
 void Controller::action(bool data)
 {
-  mModel->getData();
+  mModel->consult();
   mModelView->action(data);
 }
 
