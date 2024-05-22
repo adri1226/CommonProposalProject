@@ -621,18 +621,18 @@ SendActionPlugin_delete(struct PRESTypePlugin *plugin)
 } 
 
 /* ----------------------------------------------------------------------------
-*  Type RecieveAction
+*  Type RecieveData
 * -------------------------------------------------------------------------- */
 
 /* -----------------------------------------------------------------------------
 Support functions:
 * -------------------------------------------------------------------------- */
 
-RecieveAction *
-RecieveActionPluginSupport_create_data(void)
+RecieveData *
+RecieveDataPluginSupport_create_data(void)
 {
     try {
-        RecieveAction *sample = new RecieveAction();
+        RecieveData *sample = new RecieveData();
         ::rti::topic::allocate_sample(*sample);
         return sample;
     } catch (...) {
@@ -641,16 +641,16 @@ RecieveActionPluginSupport_create_data(void)
 }
 
 void 
-RecieveActionPluginSupport_destroy_data(
-    RecieveAction *sample) 
+RecieveDataPluginSupport_destroy_data(
+    RecieveData *sample) 
 {
     delete sample;
 }
 
 RTIBool 
-RecieveActionPluginSupport_copy_data(
-    RecieveAction *dst,
-    const RecieveAction *src)
+RecieveDataPluginSupport_copy_data(
+    RecieveData *dst,
+    const RecieveData *src)
 {
     try {
         *dst = *src;
@@ -666,7 +666,7 @@ Callback functions:
 * ---------------------------------------------------------------------------- */
 
 PRESTypePluginParticipantData 
-RecieveActionPlugin_on_participant_attached(
+RecieveDataPlugin_on_participant_attached(
     void *registration_data,
     const struct PRESTypePluginParticipantInfo *participant_info,
     RTIBool top_level_registration,
@@ -698,7 +698,7 @@ RecieveActionPlugin_on_participant_attached(
 
     programs = DDS_TypeCodeFactory_assert_programs_in_global_list(
         DDS_TypeCodeFactory_get_instance(),
-        (DDS_TypeCode *) (RTIXCdrTypeCode *)&::rti::topic::dynamic_type< RecieveAction >::get().native()
+        (DDS_TypeCode *) (RTIXCdrTypeCode *)&::rti::topic::dynamic_type< RecieveData >::get().native()
         ,
         &programProperty,
         RTI_XCDR_PROGRAM_MASK_TYPEPLUGIN);
@@ -714,7 +714,7 @@ RecieveActionPlugin_on_participant_attached(
 }
 
 void 
-RecieveActionPlugin_on_participant_detached(
+RecieveDataPlugin_on_participant_detached(
     PRESTypePluginParticipantData participant_data)
 {
     if (participant_data != NULL) {
@@ -732,7 +732,7 @@ RecieveActionPlugin_on_participant_detached(
 }
 
 PRESTypePluginEndpointData
-RecieveActionPlugin_on_endpoint_attached(
+RecieveDataPlugin_on_endpoint_attached(
     PRESTypePluginParticipantData participant_data,
     const struct PRESTypePluginEndpointInfo *endpoint_info,
     RTIBool top_level_registration, 
@@ -753,9 +753,9 @@ RecieveActionPlugin_on_endpoint_attached(
             participant_data,
             endpoint_info,
             (PRESTypePluginDefaultEndpointDataCreateSampleFunction)
-            RecieveActionPluginSupport_create_data,
+            RecieveDataPluginSupport_create_data,
             (PRESTypePluginDefaultEndpointDataDestroySampleFunction)
-            RecieveActionPluginSupport_destroy_data,
+            RecieveDataPluginSupport_destroy_data,
             NULL , NULL );
 
         if (epd == NULL) {
@@ -763,7 +763,7 @@ RecieveActionPlugin_on_endpoint_attached(
         } 
 
         if (endpoint_info->endpointKind == PRES_TYPEPLUGIN_ENDPOINT_WRITER) {
-            serializedSampleMaxSize = RecieveActionPlugin_get_serialized_sample_max_size(
+            serializedSampleMaxSize = RecieveDataPlugin_get_serialized_sample_max_size(
                 epd,RTI_FALSE,RTI_CDR_ENCAPSULATION_ID_CDR_BE,0);
             PRESTypePluginDefaultEndpointData_setMaxSizeSerializedSample(epd, serializedSampleMaxSize);
 
@@ -771,7 +771,7 @@ RecieveActionPlugin_on_endpoint_attached(
                 epd,
                 endpoint_info,
                 (PRESTypePluginGetSerializedSampleMaxSizeFunction)
-                RecieveActionPlugin_get_serialized_sample_max_size, epd,
+                RecieveDataPlugin_get_serialized_sample_max_size, epd,
                 (PRESTypePluginGetSerializedSampleSizeFunction)
                 PRESTypePlugin_interpretedGetSerializedSampleSize,
                 epd) == RTI_FALSE) {
@@ -787,16 +787,16 @@ RecieveActionPlugin_on_endpoint_attached(
 }
 
 void 
-RecieveActionPlugin_on_endpoint_detached(
+RecieveDataPlugin_on_endpoint_detached(
     PRESTypePluginEndpointData endpoint_data)
 {  
     PRESTypePluginDefaultEndpointData_delete(endpoint_data);
 }
 
 void    
-RecieveActionPlugin_return_sample(
+RecieveDataPlugin_return_sample(
     PRESTypePluginEndpointData endpoint_data,
-    RecieveAction *sample,
+    RecieveData *sample,
     void *handle)
 {
     try {
@@ -804,7 +804,7 @@ RecieveActionPlugin_return_sample(
     } catch(const std::exception& ex) {
         RTICdrLog_logWithFunctionName(
             RTI_LOG_BIT_EXCEPTION,
-            "RecieveActionPlugin_return_sample",
+            "RecieveDataPlugin_return_sample",
             &RTI_LOG_ANY_FAILURE_ss,
             "exception: ",
             ex.what());
@@ -815,29 +815,29 @@ RecieveActionPlugin_return_sample(
 }
 
 RTIBool 
-RecieveActionPlugin_copy_sample(
+RecieveDataPlugin_copy_sample(
     PRESTypePluginEndpointData,
-    RecieveAction *dst,
-    const RecieveAction *src)
+    RecieveData *dst,
+    const RecieveData *src)
 {
-    return RecieveActionPluginSupport_copy_data(dst,src);
+    return RecieveDataPluginSupport_copy_data(dst,src);
 }
 
 /* ----------------------------------------------------------------------------
 (De)Serialize functions:
 * ------------------------------------------------------------------------- */
 unsigned int 
-RecieveActionPlugin_get_serialized_sample_max_size(
+RecieveDataPlugin_get_serialized_sample_max_size(
     PRESTypePluginEndpointData endpoint_data,
     RTIBool include_encapsulation,
     RTIEncapsulationId encapsulation_id,
     unsigned int current_alignment);
 
 RTIBool
-RecieveActionPlugin_serialize_to_cdr_buffer(
+RecieveDataPlugin_serialize_to_cdr_buffer(
     char * buffer,
     unsigned int * length,
-    const RecieveAction *sample,
+    const RecieveData *sample,
     ::dds::core::policy::DataRepresentationId representation)
 {
     using namespace ::dds::core::policy;
@@ -862,10 +862,10 @@ RecieveActionPlugin_serialize_to_cdr_buffer(
         epd.typePlugin = &plugin;
         epd.programContext.endpointPluginData = &epd;
         plugin.typeCode = (struct RTICdrTypeCode *)
-        (RTIXCdrTypeCode *)&::rti::topic::dynamic_type< RecieveAction >::get().native()
+        (RTIXCdrTypeCode *)&::rti::topic::dynamic_type< RecieveData >::get().native()
         ;
         pd.programs = ::rti::topic::interpreter::get_cdr_serialization_programs<
-        RecieveAction, 
+        RecieveData, 
         true, true, true>();
 
         encapsulationId = DDS_TypeCode_get_native_encapsulation(
@@ -877,7 +877,7 @@ RecieveActionPlugin_serialize_to_cdr_buffer(
         }
 
         epd._maxSizeSerializedSample =
-        RecieveActionPlugin_get_serialized_sample_max_size(
+        RecieveDataPlugin_get_serialized_sample_max_size(
             (PRESTypePluginEndpointData)&epd, 
             RTI_TRUE, 
             encapsulationId,
@@ -919,8 +919,8 @@ RecieveActionPlugin_serialize_to_cdr_buffer(
 }
 
 RTIBool
-RecieveActionPlugin_deserialize_from_cdr_buffer(
-    RecieveAction *sample,
+RecieveDataPlugin_deserialize_from_cdr_buffer(
+    RecieveData *sample,
     const char * buffer,
     unsigned int length)
 {
@@ -939,10 +939,10 @@ RecieveActionPlugin_deserialize_from_cdr_buffer(
     epd.typePlugin = &plugin;
     epd.programContext.endpointPluginData = &epd;
     plugin.typeCode = (struct RTICdrTypeCode *)
-    (struct RTICdrTypeCode *)(RTIXCdrTypeCode *)&::rti::topic::dynamic_type< RecieveAction >::get().native()
+    (struct RTICdrTypeCode *)(RTIXCdrTypeCode *)&::rti::topic::dynamic_type< RecieveData >::get().native()
     ;
     pd.programs = ::rti::topic::interpreter::get_cdr_serialization_programs<
-    RecieveAction, 
+    RecieveData, 
     true, true, true>();
 
     epd._assignabilityProperty.acceptUnknownEnumValue = RTI_XCDR_TRUE;
@@ -959,7 +959,7 @@ RecieveActionPlugin_deserialize_from_cdr_buffer(
 }
 
 unsigned int 
-RecieveActionPlugin_get_serialized_sample_max_size(
+RecieveDataPlugin_get_serialized_sample_max_size(
     PRESTypePluginEndpointData endpoint_data,
     RTIBool include_encapsulation,
     RTIEncapsulationId encapsulation_id,
@@ -987,14 +987,14 @@ Key Management functions:
 * -------------------------------------------------------------------------------------- */
 
 PRESTypePluginKeyKind 
-RecieveActionPlugin_get_key_kind(void)
+RecieveDataPlugin_get_key_kind(void)
 {
     return PRES_TYPEPLUGIN_NO_KEY;
 }
 
-RTIBool RecieveActionPlugin_deserialize_key(
+RTIBool RecieveDataPlugin_deserialize_key(
     PRESTypePluginEndpointData endpoint_data,
-    RecieveAction **sample, 
+    RecieveData **sample, 
     RTIBool * drop_sample,
     struct RTICdrStream *stream,
     RTIBool deserialize_encapsulation,
@@ -1020,7 +1020,7 @@ RTIBool RecieveActionPlugin_deserialize_key(
 }
 
 unsigned int
-RecieveActionPlugin_get_serialized_key_max_size(
+RecieveDataPlugin_get_serialized_key_max_size(
     PRESTypePluginEndpointData endpoint_data,
     RTIBool include_encapsulation,
     RTIEncapsulationId encapsulation_id,
@@ -1043,7 +1043,7 @@ RecieveActionPlugin_get_serialized_key_max_size(
 }
 
 unsigned int
-RecieveActionPlugin_get_serialized_key_max_size_for_keyhash(
+RecieveDataPlugin_get_serialized_key_max_size_for_keyhash(
     PRESTypePluginEndpointData endpoint_data,
     RTIEncapsulationId encapsulation_id,
     unsigned int current_alignment)
@@ -1066,7 +1066,7 @@ RecieveActionPlugin_get_serialized_key_max_size_for_keyhash(
 /* ------------------------------------------------------------------------
 * Plug-in Installation Methods
 * ------------------------------------------------------------------------ */
-struct PRESTypePlugin *RecieveActionPlugin_new(void) 
+struct PRESTypePlugin *RecieveDataPlugin_new(void) 
 { 
     struct PRESTypePlugin *plugin = NULL;
     const struct PRESTypePluginVersion PLUGIN_VERSION = 
@@ -1083,26 +1083,26 @@ struct PRESTypePlugin *RecieveActionPlugin_new(void)
     /* set up parent's function pointers */
     plugin->onParticipantAttached =
     (PRESTypePluginOnParticipantAttachedCallback)
-    RecieveActionPlugin_on_participant_attached;
+    RecieveDataPlugin_on_participant_attached;
     plugin->onParticipantDetached =
     (PRESTypePluginOnParticipantDetachedCallback)
-    RecieveActionPlugin_on_participant_detached;
+    RecieveDataPlugin_on_participant_detached;
     plugin->onEndpointAttached =
     (PRESTypePluginOnEndpointAttachedCallback)
-    RecieveActionPlugin_on_endpoint_attached;
+    RecieveDataPlugin_on_endpoint_attached;
     plugin->onEndpointDetached =
     (PRESTypePluginOnEndpointDetachedCallback)
-    RecieveActionPlugin_on_endpoint_detached;
+    RecieveDataPlugin_on_endpoint_detached;
 
     plugin->copySampleFnc =
     (PRESTypePluginCopySampleFunction)
-    RecieveActionPlugin_copy_sample;
+    RecieveDataPlugin_copy_sample;
     plugin->createSampleFnc =
     (PRESTypePluginCreateSampleFunction)
-    RecieveActionPlugin_create_sample;
+    RecieveDataPlugin_create_sample;
     plugin->destroySampleFnc =
     (PRESTypePluginDestroySampleFunction)
-    RecieveActionPlugin_destroy_sample;
+    RecieveDataPlugin_destroy_sample;
 
     plugin->serializeFnc = 
     (PRESTypePluginSerializeFunction) PRESTypePlugin_interpretedSerialize;
@@ -1110,20 +1110,20 @@ struct PRESTypePlugin *RecieveActionPlugin_new(void)
     (PRESTypePluginDeserializeFunction) PRESTypePlugin_interpretedDeserializeWithAlloc;
     plugin->getSerializedSampleMaxSizeFnc =
     (PRESTypePluginGetSerializedSampleMaxSizeFunction)
-    RecieveActionPlugin_get_serialized_sample_max_size;
+    RecieveDataPlugin_get_serialized_sample_max_size;
     plugin->getSerializedSampleMinSizeFnc =
     (PRESTypePluginGetSerializedSampleMinSizeFunction)
     PRESTypePlugin_interpretedGetSerializedSampleMinSize;
     plugin->getDeserializedSampleMaxSizeFnc = NULL; 
     plugin->getSampleFnc =
     (PRESTypePluginGetSampleFunction)
-    RecieveActionPlugin_get_sample;
+    RecieveDataPlugin_get_sample;
     plugin->returnSampleFnc =
     (PRESTypePluginReturnSampleFunction)
-    RecieveActionPlugin_return_sample;
+    RecieveDataPlugin_return_sample;
     plugin->getKeyKindFnc =
     (PRESTypePluginGetKeyKindFunction)
-    RecieveActionPlugin_get_key_kind;
+    RecieveDataPlugin_get_key_kind;
 
     /* These functions are only used for keyed types. As this is not a keyed
     type they are all set to NULL
@@ -1142,17 +1142,17 @@ struct PRESTypePlugin *RecieveActionPlugin_new(void)
     plugin->typeCode = NULL; 
     #else
     plugin->typeCode = (struct RTICdrTypeCode *) 
-    &::rti::topic::dynamic_type< RecieveAction >::get().native();
+    &::rti::topic::dynamic_type< RecieveData >::get().native();
     #endif
     plugin->languageKind = PRES_TYPEPLUGIN_CPPSTL_LANG;
 
     /* Serialized buffer */
     plugin->getBuffer = 
     (PRESTypePluginGetBufferFunction)
-    RecieveActionPlugin_get_buffer;
+    RecieveDataPlugin_get_buffer;
     plugin->returnBuffer = 
     (PRESTypePluginReturnBufferFunction)
-    RecieveActionPlugin_return_buffer;
+    RecieveDataPlugin_return_buffer;
     plugin->getBufferWithParams = NULL;
     plugin->returnBufferWithParams = NULL;
     plugin->getSerializedSampleSizeFnc =
@@ -1165,14 +1165,14 @@ struct PRESTypePlugin *RecieveActionPlugin_new(void)
     plugin->validateWriterLoanedSampleFnc = NULL;
     plugin->setWriterLoanedSampleSerializedStateFnc = NULL;
 
-    static const char * TYPE_NAME = "RecieveAction";
+    static const char * TYPE_NAME = "RecieveData";
     plugin->endpointTypeName = TYPE_NAME;
     plugin->isMetpType = RTI_FALSE;
     return plugin;
 }
 
 void
-RecieveActionPlugin_delete(struct PRESTypePlugin *plugin)
+RecieveDataPlugin_delete(struct PRESTypePlugin *plugin)
 {
     RTIOsapiHeap_freeStructure(plugin);
 } 

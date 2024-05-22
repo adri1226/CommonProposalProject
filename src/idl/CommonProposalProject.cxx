@@ -71,13 +71,13 @@ std::ostream& operator << (std::ostream& o,const SendAction& sample)
     return o;
 }
 
-// ---- RecieveAction: 
+// ---- RecieveData: 
 
-RecieveAction::RecieveAction() :
+RecieveData::RecieveData() :
     m_data_ (0)  {
 }   
 
-RecieveAction::RecieveAction (
+RecieveData::RecieveData (
     int32_t data)
     :
         m_data_( data ) {
@@ -85,35 +85,35 @@ RecieveAction::RecieveAction (
 
 #ifdef RTI_CXX11_RVALUE_REFERENCES
 #ifdef RTI_CXX11_NO_IMPLICIT_MOVE_OPERATIONS
-RecieveAction::RecieveAction(RecieveAction&& other_) OMG_NOEXCEPT  :m_data_ (std::move(other_.m_data_))
+RecieveData::RecieveData(RecieveData&& other_) OMG_NOEXCEPT  :m_data_ (std::move(other_.m_data_))
 {
 } 
 
-RecieveAction& RecieveAction::operator=(RecieveAction&&  other_) OMG_NOEXCEPT {
-    RecieveAction tmp(std::move(other_));
+RecieveData& RecieveData::operator=(RecieveData&&  other_) OMG_NOEXCEPT {
+    RecieveData tmp(std::move(other_));
     swap(tmp); 
     return *this;
 }
 #endif
 #endif   
 
-void RecieveAction::swap(RecieveAction& other_)  OMG_NOEXCEPT 
+void RecieveData::swap(RecieveData& other_)  OMG_NOEXCEPT 
 {
     using std::swap;
     swap(m_data_, other_.m_data_);
 }  
 
-bool RecieveAction::operator == (const RecieveAction& other_) const {
+bool RecieveData::operator == (const RecieveData& other_) const {
     if (m_data_ != other_.m_data_) {
         return false;
     }
     return true;
 }
-bool RecieveAction::operator != (const RecieveAction& other_) const {
+bool RecieveData::operator != (const RecieveData& other_) const {
     return !this->operator ==(other_);
 }
 
-std::ostream& operator << (std::ostream& o,const RecieveAction& sample)
+std::ostream& operator << (std::ostream& o,const RecieveData& sample)
 {
     ::rti::util::StreamFlagSaver flag_saver (o);
     o <<"[";
@@ -287,14 +287,14 @@ namespace rti {
 
         #ifndef NDDS_STANDALONE_TYPE
         template<>
-        struct native_type_code< RecieveAction > {
+        struct native_type_code< RecieveData > {
             static DDS_TypeCode * get()
             {
                 using namespace ::rti::topic::interpreter;
 
                 static RTIBool is_initialized = RTI_FALSE;
 
-                static DDS_TypeCode_Member RecieveAction_g_tc_members[1]=
+                static DDS_TypeCode_Member RecieveData_g_tc_members[1]=
                 {
 
                     {
@@ -317,107 +317,107 @@ namespace rti {
                     }
                 };
 
-                static DDS_TypeCode RecieveAction_g_tc =
+                static DDS_TypeCode RecieveData_g_tc =
                 {{
                         DDS_TK_STRUCT, /* Kind */
                         DDS_BOOLEAN_FALSE, /* Ignored */
                         -1, /*Ignored*/
-                        (char *)"RecieveAction", /* Name */
+                        (char *)"RecieveData", /* Name */
                         NULL, /* Ignored */      
                         0, /* Ignored */
                         0, /* Ignored */
                         NULL, /* Ignored */
                         1, /* Number of members */
-                        RecieveAction_g_tc_members, /* Members */
+                        RecieveData_g_tc_members, /* Members */
                         DDS_VM_NONE, /* Ignored */
                         RTICdrTypeCodeAnnotations_INITIALIZER,
                         DDS_BOOLEAN_TRUE, /* _isCopyable */
                         NULL, /* _sampleAccessInfo: assigned later */
                         NULL /* _typePlugin: assigned later */
-                    }}; /* Type code for RecieveAction*/
+                    }}; /* Type code for RecieveData*/
 
                 if (is_initialized) {
-                    return &RecieveAction_g_tc;
+                    return &RecieveData_g_tc;
                 }
 
-                RecieveAction_g_tc._data._annotations._allowedDataRepresentationMask = 5;
+                RecieveData_g_tc._data._annotations._allowedDataRepresentationMask = 5;
 
-                RecieveAction_g_tc_members[0]._representation._typeCode = (RTICdrTypeCode *)&DDS_g_tc_long;
+                RecieveData_g_tc_members[0]._representation._typeCode = (RTICdrTypeCode *)&DDS_g_tc_long;
 
                 /* Initialize the values for member annotations. */
-                RecieveAction_g_tc_members[0]._annotations._defaultValue._d = RTI_XCDR_TK_LONG;
-                RecieveAction_g_tc_members[0]._annotations._defaultValue._u.long_value = 0;
-                RecieveAction_g_tc_members[0]._annotations._minValue._d = RTI_XCDR_TK_LONG;
-                RecieveAction_g_tc_members[0]._annotations._minValue._u.long_value = RTIXCdrLong_MIN;
-                RecieveAction_g_tc_members[0]._annotations._maxValue._d = RTI_XCDR_TK_LONG;
-                RecieveAction_g_tc_members[0]._annotations._maxValue._u.long_value = RTIXCdrLong_MAX;
+                RecieveData_g_tc_members[0]._annotations._defaultValue._d = RTI_XCDR_TK_LONG;
+                RecieveData_g_tc_members[0]._annotations._defaultValue._u.long_value = 0;
+                RecieveData_g_tc_members[0]._annotations._minValue._d = RTI_XCDR_TK_LONG;
+                RecieveData_g_tc_members[0]._annotations._minValue._u.long_value = RTIXCdrLong_MIN;
+                RecieveData_g_tc_members[0]._annotations._maxValue._d = RTI_XCDR_TK_LONG;
+                RecieveData_g_tc_members[0]._annotations._maxValue._u.long_value = RTIXCdrLong_MAX;
 
-                RecieveAction_g_tc._data._sampleAccessInfo = sample_access_info();
-                RecieveAction_g_tc._data._typePlugin = type_plugin_info();    
+                RecieveData_g_tc._data._sampleAccessInfo = sample_access_info();
+                RecieveData_g_tc._data._typePlugin = type_plugin_info();    
 
                 is_initialized = RTI_TRUE;
 
-                return &RecieveAction_g_tc;
+                return &RecieveData_g_tc;
             }
 
             static RTIXCdrSampleAccessInfo * sample_access_info()
             {
                 static RTIBool is_initialized = RTI_FALSE;
 
-                RecieveAction *sample;
+                RecieveData *sample;
 
-                static RTIXCdrMemberAccessInfo RecieveAction_g_memberAccessInfos[1] =
+                static RTIXCdrMemberAccessInfo RecieveData_g_memberAccessInfos[1] =
                 {RTIXCdrMemberAccessInfo_INITIALIZER};
 
-                static RTIXCdrSampleAccessInfo RecieveAction_g_sampleAccessInfo = 
+                static RTIXCdrSampleAccessInfo RecieveData_g_sampleAccessInfo = 
                 RTIXCdrSampleAccessInfo_INITIALIZER;
 
                 if (is_initialized) {
-                    return (RTIXCdrSampleAccessInfo*) &RecieveAction_g_sampleAccessInfo;
+                    return (RTIXCdrSampleAccessInfo*) &RecieveData_g_sampleAccessInfo;
                 }
 
                 RTIXCdrHeap_allocateStruct(
                     &sample, 
-                    RecieveAction);
+                    RecieveData);
                 if (sample == NULL) {
                     return NULL;
                 }
 
-                RecieveAction_g_memberAccessInfos[0].bindingMemberValueOffset[0] = 
+                RecieveData_g_memberAccessInfos[0].bindingMemberValueOffset[0] = 
                 (RTIXCdrUnsignedLong) ((char *)&sample->data() - (char *)sample);
 
-                RecieveAction_g_sampleAccessInfo.memberAccessInfos = 
-                RecieveAction_g_memberAccessInfos;
+                RecieveData_g_sampleAccessInfo.memberAccessInfos = 
+                RecieveData_g_memberAccessInfos;
 
                 {
-                    size_t candidateTypeSize = sizeof(RecieveAction);
+                    size_t candidateTypeSize = sizeof(RecieveData);
 
                     if (candidateTypeSize > RTIXCdrLong_MAX) {
-                        RecieveAction_g_sampleAccessInfo.typeSize[0] =
+                        RecieveData_g_sampleAccessInfo.typeSize[0] =
                         RTIXCdrLong_MAX;
                     } else {
-                        RecieveAction_g_sampleAccessInfo.typeSize[0] =
+                        RecieveData_g_sampleAccessInfo.typeSize[0] =
                         (RTIXCdrUnsignedLong) candidateTypeSize;
                     }
                 }
 
-                RecieveAction_g_sampleAccessInfo.useGetMemberValueOnlyWithRef =
+                RecieveData_g_sampleAccessInfo.useGetMemberValueOnlyWithRef =
                 RTI_XCDR_TRUE;
 
-                RecieveAction_g_sampleAccessInfo.getMemberValuePointerFcn = 
-                interpreter::get_aggregation_value_pointer< RecieveAction >;
+                RecieveData_g_sampleAccessInfo.getMemberValuePointerFcn = 
+                interpreter::get_aggregation_value_pointer< RecieveData >;
 
-                RecieveAction_g_sampleAccessInfo.languageBinding = 
+                RecieveData_g_sampleAccessInfo.languageBinding = 
                 RTI_XCDR_TYPE_BINDING_CPP_11_STL ;
 
                 RTIXCdrHeap_freeStruct(sample);
                 is_initialized = RTI_TRUE;
-                return (RTIXCdrSampleAccessInfo*) &RecieveAction_g_sampleAccessInfo;
+                return (RTIXCdrSampleAccessInfo*) &RecieveData_g_sampleAccessInfo;
             }
 
             static RTIXCdrTypePlugin * type_plugin_info()
             {
-                static RTIXCdrTypePlugin RecieveAction_g_typePlugin = 
+                static RTIXCdrTypePlugin RecieveData_g_typePlugin = 
                 {
                     NULL, /* serialize */
                     NULL, /* serialize_key */
@@ -435,16 +435,16 @@ namespace rti {
                     NULL
                 };
 
-                return &RecieveAction_g_typePlugin;
+                return &RecieveData_g_typePlugin;
             }
         }; // native_type_code
         #endif
 
-        const ::dds::core::xtypes::StructType& dynamic_type< RecieveAction >::get()
+        const ::dds::core::xtypes::StructType& dynamic_type< RecieveData >::get()
         {
             return static_cast<const ::dds::core::xtypes::StructType&>(
                 ::rti::core::native_conversions::cast_from_native< ::dds::core::xtypes::DynamicType >(
-                    *(native_type_code< RecieveAction >::get())));
+                    *(native_type_code< RecieveData >::get())));
         }
 
     }
@@ -516,7 +516,7 @@ namespace dds {
             RTIOsapiUtility_unusedParameter(sample);
         }
 
-        void topic_type_support< RecieveAction >:: register_type(
+        void topic_type_support< RecieveData >:: register_type(
             ::dds::domain::DomainParticipant& participant,
             const std::string& type_name) 
         {
@@ -524,18 +524,18 @@ namespace dds {
             ::rti::domain::register_type_plugin(
                 participant,
                 type_name,
-                RecieveActionPlugin_new,
-                RecieveActionPlugin_delete);
+                RecieveDataPlugin_new,
+                RecieveDataPlugin_delete);
         }
 
-        std::vector<char>& topic_type_support< RecieveAction >::to_cdr_buffer(
+        std::vector<char>& topic_type_support< RecieveData >::to_cdr_buffer(
             std::vector<char>& buffer, 
-            const RecieveAction& sample,
+            const RecieveData& sample,
             ::dds::core::policy::DataRepresentationId representation)
         {
             // First get the length of the buffer
             unsigned int length = 0;
-            RTIBool ok = RecieveActionPlugin_serialize_to_cdr_buffer(
+            RTIBool ok = RecieveDataPlugin_serialize_to_cdr_buffer(
                 NULL, 
                 &length,
                 &sample,
@@ -546,7 +546,7 @@ namespace dds {
 
             // Create a vector with that size and copy the cdr buffer into it
             buffer.resize(length);
-            ok = RecieveActionPlugin_serialize_to_cdr_buffer(
+            ok = RecieveDataPlugin_serialize_to_cdr_buffer(
                 &buffer[0], 
                 &length, 
                 &sample,
@@ -558,24 +558,24 @@ namespace dds {
             return buffer;
         }
 
-        void topic_type_support< RecieveAction >::from_cdr_buffer(RecieveAction& sample, 
+        void topic_type_support< RecieveData >::from_cdr_buffer(RecieveData& sample, 
         const std::vector<char>& buffer)
         {
 
-            RTIBool ok  = RecieveActionPlugin_deserialize_from_cdr_buffer(
+            RTIBool ok  = RecieveDataPlugin_deserialize_from_cdr_buffer(
                 &sample, 
                 &buffer[0], 
                 static_cast<unsigned int>(buffer.size()));
             ::rti::core::check_return_code(ok ? DDS_RETCODE_OK : DDS_RETCODE_ERROR,
-            "Failed to create RecieveAction from cdr buffer");
+            "Failed to create RecieveData from cdr buffer");
         }
 
-        void topic_type_support< RecieveAction >::reset_sample(RecieveAction& sample) 
+        void topic_type_support< RecieveData >::reset_sample(RecieveData& sample) 
         {
             sample.data(0);
         }
 
-        void topic_type_support< RecieveAction >::allocate_sample(RecieveAction& sample, int, int) 
+        void topic_type_support< RecieveData >::allocate_sample(RecieveData& sample, int, int) 
         {
             RTIOsapiUtility_unusedParameter(sample);
         }

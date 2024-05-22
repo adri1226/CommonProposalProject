@@ -10,8 +10,8 @@ For more information, type 'rtiddsgen -help' at a command shell
 or consult the Code Generator User's Manual.
 */
 
-#ifndef CommonProposalProject_1738084540_hpp
-#define CommonProposalProject_1738084540_hpp
+#ifndef CommonProposalProject_1738084534_hpp
+#define CommonProposalProject_1738084534_hpp
 
 #include <iosfwd>
 
@@ -59,7 +59,7 @@ or consult the Code Generator User's Manual.
 
 static const std::string SEND_ACTION_TOPIC = "SendAction";
 
-static const std::string RECIEVE_ACTION_TOPIC = "RecieveAction";
+static const std::string RECIEVE_DATA_TOPIC = "RecieveData";
 
 class NDDSUSERDllExport SendAction {
   public:
@@ -110,22 +110,22 @@ inline void swap(SendAction& a, SendAction& b)  OMG_NOEXCEPT
 
 NDDSUSERDllExport std::ostream& operator<<(std::ostream& o, const SendAction& sample);
 
-class NDDSUSERDllExport RecieveAction {
+class NDDSUSERDllExport RecieveData {
   public:
-    RecieveAction();
+    RecieveData();
 
-    explicit RecieveAction(
+    explicit RecieveData(
         int32_t data);
 
     #ifdef RTI_CXX11_RVALUE_REFERENCES
     #ifndef RTI_CXX11_NO_IMPLICIT_MOVE_OPERATIONS
-    RecieveAction (RecieveAction&&) = default;
-    RecieveAction& operator=(RecieveAction&&) = default;
-    RecieveAction& operator=(const RecieveAction&) = default;
-    RecieveAction(const RecieveAction&) = default;
+    RecieveData (RecieveData&&) = default;
+    RecieveData& operator=(RecieveData&&) = default;
+    RecieveData& operator=(const RecieveData&) = default;
+    RecieveData(const RecieveData&) = default;
     #else
-    RecieveAction(RecieveAction&& other_) OMG_NOEXCEPT;  
-    RecieveAction& operator=(RecieveAction&&  other_) OMG_NOEXCEPT;
+    RecieveData(RecieveData&& other_) OMG_NOEXCEPT;  
+    RecieveData& operator=(RecieveData&&  other_) OMG_NOEXCEPT;
     #endif
     #endif 
 
@@ -141,10 +141,10 @@ class NDDSUSERDllExport RecieveAction {
         m_data_ = value;
     }
 
-    bool operator == (const RecieveAction& other_) const;
-    bool operator != (const RecieveAction& other_) const;
+    bool operator == (const RecieveData& other_) const;
+    bool operator != (const RecieveData& other_) const;
 
-    void swap(RecieveAction& other_) OMG_NOEXCEPT ;
+    void swap(RecieveData& other_) OMG_NOEXCEPT ;
 
   private:
 
@@ -152,12 +152,12 @@ class NDDSUSERDllExport RecieveAction {
 
 };
 
-inline void swap(RecieveAction& a, RecieveAction& b)  OMG_NOEXCEPT 
+inline void swap(RecieveData& a, RecieveData& b)  OMG_NOEXCEPT 
 {
     a.swap(b);
 }
 
-NDDSUSERDllExport std::ostream& operator<<(std::ostream& o, const RecieveAction& sample);
+NDDSUSERDllExport std::ostream& operator<<(std::ostream& o, const RecieveData& sample);
 
 namespace rti {
     namespace flat {
@@ -205,17 +205,17 @@ namespace dds {
         };
 
         template<>
-        struct topic_type_name< RecieveAction > {
+        struct topic_type_name< RecieveData > {
             NDDSUSERDllExport static std::string value() {
-                return "RecieveAction";
+                return "RecieveData";
             }
         };
 
         template<>
-        struct is_topic_type< RecieveAction > : public ::dds::core::true_type {};
+        struct is_topic_type< RecieveData > : public ::dds::core::true_type {};
 
         template<>
-        struct topic_type_support< RecieveAction > {
+        struct topic_type_support< RecieveData > {
             NDDSUSERDllExport 
             static void register_type(
                 ::dds::domain::DomainParticipant& participant,
@@ -224,17 +224,17 @@ namespace dds {
             NDDSUSERDllExport 
             static std::vector<char>& to_cdr_buffer(
                 std::vector<char>& buffer, 
-                const RecieveAction& sample,
+                const RecieveData& sample,
                 ::dds::core::policy::DataRepresentationId representation 
                 = ::dds::core::policy::DataRepresentation::auto_id());
 
             NDDSUSERDllExport 
-            static void from_cdr_buffer(RecieveAction& sample, const std::vector<char>& buffer);
+            static void from_cdr_buffer(RecieveData& sample, const std::vector<char>& buffer);
             NDDSUSERDllExport 
-            static void reset_sample(RecieveAction& sample);
+            static void reset_sample(RecieveData& sample);
 
             NDDSUSERDllExport 
-            static void allocate_sample(RecieveAction& sample, int, int);
+            static void allocate_sample(RecieveData& sample, int, int);
 
             static const ::rti::topic::TypePluginKind::type type_plugin_kind = 
             ::rti::topic::TypePluginKind::STL;
@@ -262,14 +262,14 @@ namespace rti {
 
         #ifndef NDDS_STANDALONE_TYPE
         template<>
-        struct dynamic_type< RecieveAction > {
+        struct dynamic_type< RecieveData > {
             typedef ::dds::core::xtypes::StructType type;
             NDDSUSERDllExport static const ::dds::core::xtypes::StructType& get();
         };
         #endif
 
         template <>
-        struct extensibility< RecieveAction > {
+        struct extensibility< RecieveData > {
             static const ::dds::core::xtypes::ExtensibilityKind::type kind =
             ::dds::core::xtypes::ExtensibilityKind::EXTENSIBLE;                
         };
@@ -284,5 +284,5 @@ namespace rti {
 #define NDDSUSERDllExport
 #endif
 
-#endif // CommonProposalProject_1738084540_hpp
+#endif // CommonProposalProject_1738084534_hpp
 
