@@ -7,6 +7,7 @@ DDS::DDS(unsigned int domainId, unsigned int sampleCount)
   , mWriterRecieveData(createrDataWriter<RecieveData>(RECIEVE_DATA_TOPIC))
 {
   mThreadsForReading[SEND_ACTION_TOPIC] = std::thread(&DDS::readingTopicSendAction, this);
+  mRunning = true;
 }
 
 DDS::~DDS()
@@ -16,7 +17,7 @@ DDS::~DDS()
 
 void DDS::readingTopicSendAction()
 {
-  if(mRunning)
+  while(mRunning)
   {
     mReaderSendAction.wait(mWait);
   }
